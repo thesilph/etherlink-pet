@@ -44,6 +44,29 @@ describe("Bankie", function () {
       );
     });
 
+  });
 
+  describe("Adoption", function () {
+    it("Should mint a new NFT and set the correct owner", async function () {
+      const { bankie, adoptionPrice, otherAccount } = await loadFixture(deployBankie);
+
+      const tokenURI = "ipfs://test-uri";
+      // Call adopt from otherAccount
+      const tx = await bankie.write.adopt(
+        [otherAccount.account.address, tokenURI],
+        { account: otherAccount.account, value: adoptionPrice }
+      );
+
+      // Get the tokenId from the event or assume it's 0 for the first mint
+      const tokenId = 0n;
+
+      // Check owner of tokenId
+      const nftOwner = await bankie.read.ownerOf([tokenId]);
+      expect(nftOwner.toLowerCase()).to.equal(otherAccount.account.address.toLowerCase());
+
+      // Optionally, check tokenURI
+      const uri = await bankie.read.tokenURI([tokenId]);
+      expect(uri).to.equal(tokenURI);
+    });
   });
 });
