@@ -21,7 +21,7 @@ contract Bankie is ERC721URIStorage, Ownable {
     // tokenId => PetStats
     mapping(uint256 => PetStats) public petData;
 
-    event PetAdopted(address indexed adopter, uint256 indexed tokenId, string tokenURI, uint256 pricePaid);
+    event PetAdopted(address indexed adopter, uint256 indexed tokenId, uint256 pricePaid);
     event PetFed(uint256 indexed tokenId, address indexed feeder, uint256 newFedCount, uint256 timestamp);
     event PetHarvested(uint256 indexed tokenId, address indexed feeder, uint256 timestamp);
 
@@ -37,22 +37,20 @@ contract Bankie is ERC721URIStorage, Ownable {
      * @dev Allows a user to adopt a new Bankie pet.
      * The user must send exactly `adoptionPrice` Ether with the transaction.
      * @param player The address to mint the NFT to.
-     * @param tokenURI The metadata URI for the new pet.
-     * @return The tokenId of the newly adopted pet.
+     * @return tokenId of the newly adopted pet.
      */
-    function adopt(address player, string memory tokenURI) public payable returns (uint256) {
+    function adopt(address player) public payable returns (uint256) {
         require(msg.value == adoptionPrice, "Please send exactly the adoption price to adopt a Bankie.");
 
         uint256 tokenId = _nextTokenId++;
 
         _safeMint(player, tokenId);
-        _setTokenURI(tokenId, tokenURI);
 
 
         petData[tokenId].fedCount = 0;
         petData[tokenId].lastFedTimestamp = block.timestamp; 
 
-        emit PetAdopted(player, tokenId, tokenURI, msg.value);
+        emit PetAdopted(player, tokenId, msg.value);
 
         return tokenId;
     }

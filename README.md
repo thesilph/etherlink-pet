@@ -26,7 +26,7 @@ Bankie is an on-chain NFT pet you can adopt, feed, and harvest rewards from. Eac
 
 ## 📝 Contract Functions
 
-### `adopt(address player, string tokenURI)`
+### `adopt(address player)`
 Adopt a new Bankie pet by paying the required adoption price. The NFT is minted to the specified address with the given metadata URI.
 
 ### `feedPet(uint256 tokenId)`
