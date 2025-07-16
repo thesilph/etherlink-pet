@@ -11,7 +11,7 @@ export const config = createConfig(
   },
 
     // Required API Keys
-    walletConnectProjectId: '818def9b2c94af699743434b04f15289',
+    walletConnectProjectId: import.meta.env.VITE_WALLET_PROJECTID,
 
     // Required App Info
     appName: "Your App Name",
