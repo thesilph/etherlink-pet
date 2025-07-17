@@ -2,6 +2,8 @@ import { JSX } from "preact/jsx-runtime";
 import preactLogo from './../assets/preact.svg';
 import header from './../assets/header.js'; 
 import { ConnectKitButton } from "connectkit";
+import { ReadContract } from "../components/applefarm";
+import { useAccount } from "wagmi";
 
 const buttonStyle: JSX.CSSProperties = {
 	backgroundColor: '#4f46e5',
@@ -13,6 +15,7 @@ const buttonStyle: JSX.CSSProperties = {
 	fontSize: '1rem',
 };
 
+
 export function Index(){
     return(
         		<div>
@@ -21,7 +24,7 @@ export function Index(){
                         {header}
                     </pre>
                     <ConnectKitButton showAvatar={false} showBalance={true}/>
-
+                    <ReadContract/>
 		</div>
     )
 }
