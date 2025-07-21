@@ -2,7 +2,7 @@ import { useReadContract } from 'wagmi'
 import { wagmiContractConfig } from '../assets/applefarm-contract'
 import { useAccount, useEnsName } from 'wagmi'
 
-export function ReadContract() {
+export function ReadAppleContract() {
   const { address, isConnecting, isDisconnected } = useAccount();
   if(address){
     const { data: decimals } = useReadContract({

@@ -2,8 +2,9 @@ import { JSX } from "preact/jsx-runtime";
 import preactLogo from './../assets/preact.svg';
 import header from './../assets/header.js'; 
 import { ConnectKitButton } from "connectkit";
-import { ReadContract } from "../components/applefarm";
+import { ReadAppleContract } from "../components/applefarm";
 import { useAccount } from "wagmi";
+import { ReadBankieContract } from "../components/entity";
 
 const buttonStyle: JSX.CSSProperties = {
 	backgroundColor: '#4f46e5',
@@ -24,7 +25,18 @@ export function Index(){
                         {header}
                     </pre>
                     <ConnectKitButton showAvatar={false} showBalance={true}/>
-                    <ReadContract/>
+					{/* <div>
+						{'APPLEFARM'}
+						<div>
+							<ReadAppleContract/>
+						</div>
+					</div> */}
+                    <div>
+						{'BANKIE :)'}
+						<div>
+							<ReadBankieContract/>
+						</div>
+					</div>
 		</div>
     )
 }

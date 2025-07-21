@@ -1,10 +1,10 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.20;
 
-import {ERC721URIStorage, ERC721} from "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
+import {ERC721Enumerable, ERC721} from "@openzeppelin/contracts/token/ERC721/extensions/ERC721Enumerable.sol";
 import {Ownable} from "@openzeppelin/contracts/access/Ownable.sol"; // For owner to withdraw funds
 
-contract Bankie is ERC721URIStorage, Ownable {
+contract Bankie is ERC721Enumerable, Ownable {
     uint256 private _nextTokenId;
 
 
@@ -19,7 +19,7 @@ contract Bankie is ERC721URIStorage, Ownable {
 
     // Mapping to store PetStats for each tokenId
     // tokenId => PetStats
-    mapping(uint256 => PetStats) public petData;
+    mapping(uint256 => PetStats) private petData;
 
     event PetAdopted(address indexed adopter, uint256 indexed tokenId, uint256 pricePaid);
     event PetFed(uint256 indexed tokenId, address indexed feeder, uint256 newFedCount, uint256 timestamp);
@@ -95,9 +95,13 @@ contract Bankie is ERC721URIStorage, Ownable {
         require(success, "Withdrawal failed.");
     }
 
-    // The _baseURI function is inherited from ERC721URIStorage and can be set
-    // by the owner if desired to manage metadata in a structured way.
-    // function _baseURI() internal view override returns (string memory) {
-    //     return "ipfs://your_base_uri_here/";
-    // }
+    /**
+    * @dev Returns the statistics of a given pet. Can check on anyone's pet.
+    * @param tokenId The ID of the pet.
+    */
+    function checkPet(uint256 tokenId) public view returns (PetStats memory) {
+        return petData[tokenId];
+    }
+
+    //to know all user's pets, balanceOf to know how many and get them on tokenOfOwnerByIndex
 }

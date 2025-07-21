@@ -41,6 +41,8 @@ const { bankie, adoptionPrice, otherAccount } = await loadFixture(deployBankie);
 
       // Check owner of tokenId
       const nftOwner = await bankie.read.ownerOf([tokenId]);
+
+      console.log(nftOwner);
   }
 
 // We recommend this pattern to be able to use async/await everywhere
