@@ -66,15 +66,17 @@ npx hardhat test
 ### 3. Deploy to Local Network
 
 ```sh
-npx hardhat run scripts/deploy.ts --network localhost
+npx hardhad node
+npx hardhat run test/deploy.ts --network localhost
 ```
+it will print the contract address, mint the first nft and print the owner.
 
 ### 4. Deploy to Testnet/Mainnet
 
 Update your `hardhat.config.ts` with the correct network and run:
 
 ```sh
-npx hardhat run scripts/deploy.ts --network <network>
+npx hardhat run test/deploy.ts --network <network>
 ```
 
 ---
@@ -84,6 +86,7 @@ npx hardhat run scripts/deploy.ts --network <network>
 - `contracts/Bankie.sol` — Main smart contract
 - `test/Bankie.ts` — Hardhat/Chai test suite
 - `scripts/deploy.ts` — Deployment script
+- `web3-dapp` - Contains the preact dApp project
 
 ---
 
