@@ -2,34 +2,32 @@ import { useReadContract } from 'wagmi'
 import contract from '../../../artifacts/contracts/Bankie.sol/Bankie.json'
 import { useAccount, useEnsName } from 'wagmi'
 import {Bankie$Type} from  '../../../artifacts/contracts/Bankie.sol/Bankie'
+import md5 from 'md5';
 
 export function ReadBankieContract() {
   const { address, isConnecting, isDisconnected } = useAccount();
-  const BankieContract = contract as Bankie$Type;
+  const bankieContract = contract as Bankie$Type;
   const bankieAddress = import.meta.env.VITE_BANKIE_ADDRESS;
   if(address) {
-    console.log('calling balance')
+    console.log('calling pets')
+    
     const { data: balance } = useReadContract({
         address: bankieAddress,
-        ...contract,
+        ...bankieContract,
         functionName: 'balanceOf',
         args: [address],
     })
-
-    console.log(balance);
-
-    if(true || balance){
-        console.log('calling token')
+    if(balance){
         const { data: tokenId } = useReadContract({
             address: bankieAddress,
-            ...contract,
+            ...bankieContract,
             functionName: 'tokenOfOwnerByIndex',
             args: [address, 0n], // 0 we're just getting the first one
         })
-        console.log(tokenId)
+
         const { data: pet } = useReadContract({
             address: bankieAddress,
-            ...contract,
+            ...bankieContract,
             functionName: 'checkPet',
             args: [tokenId],
         })
@@ -38,7 +36,8 @@ export function ReadBankieContract() {
         <>
             <div>balanceOf: {(balance)?.toString()}</div>
             <div>tokenId: {(tokenId)?.toString()}</div>
-            <div>Pet: {(pet)?.toString()}</div>
+            <div>id md5: {md5(tokenId.toString())}</div>
+            <div>Pet: {pet.fedAmount}  {pet.fedCount}  {pet.lastFedTimestamp}</div>
         </>
          
         )

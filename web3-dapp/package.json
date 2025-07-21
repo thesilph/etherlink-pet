@@ -9,6 +9,7 @@
 	"dependencies": {
 		"@tanstack/react-query": "^5.83.0",
 		"connectkit": "^1.9.1",
+		"md5": "^2.3.0",
 		"preact": "^10.25.3",
 		"viem": "^2.32.0",
 		"wagmi": "^2.15.7"
