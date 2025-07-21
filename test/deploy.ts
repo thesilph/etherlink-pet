@@ -14,6 +14,7 @@ import { getAddress, parseGwei } from "viem";
     const bankie_deploy = await hre.viem.deployContract("Bankie", [adoptionPrice], {
       value: 0,
     });
+    console.log("Bankie deployed at:", bankie_deploy.address);
     const bankie = await hre.viem.getContractAt("Bankie", bankie_deploy.address)
     const publicClient = await hre.viem.getPublicClient();
 
@@ -42,7 +43,7 @@ const { bankie, adoptionPrice, otherAccount } = await loadFixture(deployBankie);
       // Check owner of tokenId
       const nftOwner = await bankie.read.ownerOf([tokenId]);
 
-      console.log(nftOwner);
+      console.log('NFT owner is: ' + nftOwner);
   }
 
 // We recommend this pattern to be able to use async/await everywhere

@@ -1,11 +1,12 @@
 import { getDefaultConfig } from "connectkit";
 import { http, createConfig } from 'wagmi'
-import { etherlink, etherlinkTestnet } from 'wagmi/chains'
+import { etherlink, etherlinkTestnet, localhost } from 'wagmi/chains'
 
 export const config = createConfig(
   getDefaultConfig({
-   chains: [etherlink, etherlinkTestnet],
+   chains: [localhost, etherlink, etherlinkTestnet],
   transports: {
+    [localhost.id]: http(),
     [etherlink.id]: http(),
     [etherlinkTestnet.id]: http(),
   },
