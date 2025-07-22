@@ -12,14 +12,14 @@ export function StylizedRatSVG({id}) {
       {/* Body */}
       <ellipse cx="100" cy="110" rx="60" ry="40" fill={color1} stroke={color3} strokeWidth="3" />
       {/* Head */}
-      <ellipse cx="150" cy="70" rx="35" ry="28" fill={color2} stroke={color3} strokeWidth="3" />
+      <ellipse cx="150" cy="70" rx="35" ry="28" fill={color3} stroke={color3} strokeWidth="3" />
       {/* Left Ear */}
       <ellipse cx="130" cy="40" rx="15" ry="18" fill={color4} stroke={color3} strokeWidth="2" />
       {/* Right Ear */}
       <ellipse cx="170" cy="40" rx="15" ry="18" fill={color4} stroke={color3} strokeWidth="2" />
       {/* Eyes */}
-      <ellipse cx="140" cy="70" rx="5" ry="7" fill={color3} />
-      <ellipse cx="160" cy="70" rx="5" ry="7" fill={color3} />
+      <ellipse cx="140" cy="70" rx="5" ry="7" fill={color2} />
+      <ellipse cx="160" cy="70" rx="5" ry="7" fill={color2} />
       {/* Nose */}
       <ellipse cx="150" cy="90" rx="6" ry="4" fill="#FF6F61" stroke={color3} strokeWidth="1" />
       {/* Whiskers */}
