@@ -1,9 +1,10 @@
 import { useReadContract } from 'wagmi'
-import contract from '../../../artifacts/contracts/Bankie.sol/Bankie.json'
+import contract from '../../../../artifacts/contracts/Bankie.sol/Bankie.json'
 import { useAccount, useEnsName } from 'wagmi'
-import {Bankie$Type} from  '../../../artifacts/contracts/Bankie.sol/Bankie'
+import {Bankie$Type} from  '../../../../artifacts/contracts/Bankie.sol/Bankie'
 import md5 from 'md5';
 import { BankieVisual } from './bankievisual';
+import { BankieBox } from './bankiebox';
 
 export function ReadBankieContract() {
   const { address, isConnecting, isDisconnected } = useAccount();
@@ -35,11 +36,7 @@ export function ReadBankieContract() {
 
         return (
         <>
-            <div>balanceOf: {(balance)?.toString()}</div>
-            <div>tokenId: {(tokenId)?.toString()}</div>
-            <div>id md5: {md5(tokenId.toString())}</div>
-            <div>Pet: {pet?.fedAmount}  {pet?.fedCount}  {pet?.lastFedTimestamp}</div>
-            <BankieVisual id={tokenId}></BankieVisual>
+            <BankieBox id={tokenId} pet={pet} />
         </>
          
         )
