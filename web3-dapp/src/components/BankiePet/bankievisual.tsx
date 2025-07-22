@@ -8,7 +8,6 @@ export function BankieVisual({id}) {
     const color3 = '#'+hash.slice(12,18);
     const color4 = '#'+hash.slice(18,24);
     const color5 = '#'+hash.slice(24,30);
-    console.log(color1)
     const defaultcolor = "#FFD700";
     return (
         <div style={{

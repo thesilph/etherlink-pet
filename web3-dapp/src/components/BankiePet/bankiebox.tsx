@@ -1,6 +1,7 @@
 
 import { BankieVisual } from './bankievisual';
 import { BankieBubbleCard, CheckPetReturnType } from './bankiebubblecard';
+import { StylizedRatSVG } from './stylizedratsvg';
 
 interface BankieBoxProps {
   id: number | bigint;
@@ -18,6 +19,7 @@ export function BankieBox({ id, pet }: BankieBoxProps) {
     }}>
       <BankieBubbleCard pet={pet} />
       <BankieVisual id={id} />
+      <StylizedRatSVG id={id} />
     </div>
   );
 }
