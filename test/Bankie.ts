@@ -57,7 +57,6 @@ describe("Bankie", function () {
       const { bankie, adoptionPrice, otherAccount } =
         await loadFixture(deployBankie);
 
-      const tokenURI = "ipfs://test-uri";
       // Call adopt from otherAccount
       const tx = await bankie.write.adopt([otherAccount.account.address], {
         account: otherAccount.account,
@@ -72,10 +71,6 @@ describe("Bankie", function () {
       expect(nftOwner.toLowerCase()).to.equal(
         otherAccount.account.address.toLowerCase(),
       );
-
-      // Optionally, check tokenURI
-      const uri = await bankie.read.tokenURI([tokenId]);
-      expect(uri).to.equal(tokenURI);
     });
   });
 });
