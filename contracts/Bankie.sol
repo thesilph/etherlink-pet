@@ -93,6 +93,10 @@ contract Bankie is ERC721Enumerable, Ownable {
             "You need to feed an amount equal or greater to the adoptionPrice"
         );
         require(
+            block.timestamp > petData[tokenId].lastFedTimestamp + 57600,
+            "You must only feed your pet every 16 hours"
+        ); // 16 hours in seconds
+        require(
             petData[tokenId].lastFedTimestamp + 172800 < block.timestamp,
             "You have forgotten to feed your pet! It has run away :("
         ); // 2 days in seconds
@@ -109,7 +113,7 @@ contract Bankie is ERC721Enumerable, Ownable {
     }
 
     /**
-     * @dev Allows the owner of a pet to get its funds after 100 days:)
+     * @dev Allows the owner of a pet to get its funds after 100 times :)
      * @param tokenId The ID of the pet to harvest.
      */
     function layGoldenEgg(uint256 tokenId) public {
