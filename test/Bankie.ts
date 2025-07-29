@@ -49,12 +49,12 @@ describe("Bankie", function () {
       expect(await bankie.read.owner()).to.equal(
         getAddress(owner.account.address),
       );
-    });
+    });   
   });
 
   describe("Adoption", function () {
     it("Should mint a new NFT and set the correct owner", async function () {
-      const { bankie, adoptionPrice, otherAccount } =
+      const { owner, bankie, adoptionPrice, otherAccount } =
         await loadFixture(deployBankie);
 
       // Call adopt from otherAccount
@@ -63,9 +63,10 @@ describe("Bankie", function () {
         value: adoptionPrice,
       });
 
-      // Get the tokenId from the event or assume it's 0 for the first mint
-      const tokenId = 0n;
-
+      // Get the tokenId from the contract
+      let tokenId = await bankie.read.tokenOfOwnerByIndex([otherAccount.account.address, 0n])
+      console.log('token Id: ' + tokenId);
+      
       // Check owner of tokenId
       const nftOwner = await bankie.read.ownerOf([tokenId]);
       expect(nftOwner.toLowerCase()).to.equal(

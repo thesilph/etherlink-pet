@@ -4,7 +4,8 @@
   "main": "index.js",
   "scripts": {
     "test": "npx hardhat test",
-    "localdeploy": "npx hardhat run test/deploy.ts --network localhost"
+    "localdeploy": "npx hardhat run scripts/deploy.ts --network localhost",
+    "localnode" : "npx hardhat node"
   },
   "keywords": [],
   "author": "",

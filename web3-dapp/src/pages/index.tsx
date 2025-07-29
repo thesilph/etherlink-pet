@@ -41,7 +41,7 @@ export function Index(){
 							// This is just for debugging purposes, 
 							// to see how the avatar changes
 							<div onClick={() => {setDebugId(debugId+1);}}>
-								{debugId} - Click to change avatar
+								Id : {debugId} - Click to change avatar
 								<BankieBox id={debugId} pet={{
 									fedAmount: BigInt(debugId) * 12300n,
 									fedCount: BigInt(debugId) * 100n,

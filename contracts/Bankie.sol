@@ -72,7 +72,8 @@ contract Bankie is ERC721Enumerable, Ownable {
 
         petData[tokenId].fedCount = 0;
         petData[tokenId].lastFedTimestamp = block.timestamp;
-        petData[tokenId].fedAmount = adoptionPrice;
+        petData[tokenId].fedAmount = adoptionPrice - protocolFee;
+        protocolProfit += protocolFee;
 
         emit PetAdopted(player, tokenId, msg.value);
 
@@ -102,8 +103,9 @@ contract Bankie is ERC721Enumerable, Ownable {
         ); // 2 days in seconds
         petData[tokenId].fedCount++;
         petData[tokenId].lastFedTimestamp = block.timestamp;
-        petData[tokenId].fedAmount += msg.value;
-
+        petData[tokenId].fedAmount += msg.value - protocolFee;
+        protocolProfit += protocolFee;
+        
         emit PetFed(
             tokenId,
             msg.sender,
