@@ -11,9 +11,7 @@ export function ReadBankieContract() {
   const { address, isConnecting, isDisconnected } = useAccount();
   const bankieContract = contract as Bankie$Type;
   const bankieAddress = import.meta.env.VITE_BANKIE_ADDRESS;
-    const {writeContract} = useWriteContract();
-
-
+  const {writeContract} = useWriteContract();
 
   if(address) {
     const { data: balance } = useReadContract({
