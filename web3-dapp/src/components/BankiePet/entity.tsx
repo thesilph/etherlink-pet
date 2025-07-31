@@ -16,8 +16,6 @@ export function ReadBankieContract() {
 
 
   if(address) {
-    console.log('calling pets')
-    
     const { data: balance } = useReadContract({
         address: bankieAddress,
         ...bankieContract,

@@ -6,7 +6,7 @@ import { ReadBankieContract } from "../components/BankiePet/entity";
 import { useState } from "preact/hooks";
 import { BankieBox } from "../components/BankiePet/bankiebox";
 
-const showAvatarForDebug = import.meta.env.VITE_ISDEBUG;
+const showAvatarForDebug = import.meta.env.VITE_ISDEBUG == 'true';
 const showAppleFarm = import.meta.env.VITE_SHOWAPPLEFARM;
 
 
