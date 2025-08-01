@@ -72,7 +72,7 @@ contract Bankie is ERC721Enumerable, Ownable {
 
         petData[tokenId].fedCount = 0;
         petData[tokenId].lastFedTimestamp = block.timestamp;
-        petData[tokenId].fedAmount = adoptionPrice - protocolFee;
+        petData[tokenId].fedAmount = msg.value - protocolFee;
         protocolProfit += protocolFee;
 
         emit PetAdopted(player, tokenId, msg.value);
@@ -128,14 +128,16 @@ contract Bankie is ERC721Enumerable, Ownable {
             "You can only harvest after feeding 100 meals."
         );
 
+        petData[tokenId].fedCount = 0;
+        petData[tokenId].lastFedTimestamp = block.timestamp;
+        petData[tokenId].fedAmount = 0;
+
         (bool success, ) = payable(msg.sender).call{
             value: petData[tokenId].fedAmount
         }("");
         require(success, "Withdrawal failed.");
 
-        petData[tokenId].fedCount = 0;
-        petData[tokenId].lastFedTimestamp = block.timestamp;
-        petData[tokenId].fedAmount = 0;
+       
         emit PetHarvested(tokenId, msg.sender, block.timestamp);
     }
 
@@ -144,7 +146,7 @@ contract Bankie is ERC721Enumerable, Ownable {
      */
     function withdraw() public onlyOwner {
         require(protocolProfit > 0, "No Ether to withdraw.");
-
+        protocolProfit = 0;
         (bool success, ) = payable(owner()).call{value: protocolProfit}("");
         require(success, "Withdrawal failed.");
     }
