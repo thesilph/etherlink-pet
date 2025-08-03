@@ -33,7 +33,6 @@ export function Index(){
 						</div>
 					}
                     <div>
-						{'BANKIE :)'}
 						<div>
 							<ReadBankieContract/>
 						</div>

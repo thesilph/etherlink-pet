@@ -57,10 +57,9 @@ contract Bankie is ERC721Enumerable, Ownable {
     /**
      * @dev Allows a user to adopt a new Bankie pet.
      * The user must send exactly `adoptionPrice` Ether with the transaction.
-     * @param player The address to mint the NFT to.
      * @return tokenId of the newly adopted pet.
      */
-    function adopt(address player) public payable returns (uint256) {
+    function adopt() public payable returns (uint256) {
         require(
             msg.value >= adoptionPrice,
             "Please send over the adoption price to adopt a Bankie."
@@ -68,14 +67,14 @@ contract Bankie is ERC721Enumerable, Ownable {
 
         uint256 tokenId = _nextTokenId++;
 
-        _safeMint(player, tokenId);
+        _safeMint(msg.sender, tokenId);
 
         petData[tokenId].fedCount = 0;
         petData[tokenId].lastFedTimestamp = block.timestamp;
         petData[tokenId].fedAmount = msg.value - protocolFee;
         protocolProfit += protocolFee;
 
-        emit PetAdopted(player, tokenId, msg.value);
+        emit PetAdopted(msg.sender, tokenId, msg.value);
 
         return tokenId;
     }

@@ -58,7 +58,7 @@ describe("Bankie", function () {
         await loadFixture(deployBankie);
 
       // Call adopt from otherAccount
-      const tx = await bankie.write.adopt([otherAccount.account.address], {
+      const tx = await bankie.write.adopt({
         account: otherAccount.account,
         value: adoptionPrice,
       });

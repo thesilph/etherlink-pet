@@ -12,6 +12,23 @@ export function ReadBankieContract() {
   const bankieContract = contract as Bankie$Type;
   const bankieAddress = import.meta.env.VITE_BANKIE_ADDRESS;
   const {writeContract} = useWriteContract();
+  const currentChain = localhost;
+
+  function adopt(){
+    const adoptionPrice = 27n; // TODO: 
+    if(adoptionPrice){
+            writeContract({
+                    account: address,
+                    chain: currentChain,
+                    address: bankieAddress,
+                    ...bankieContract,
+                    functionName: 'adopt',
+                    args: [],
+                    value: adoptionPrice
+                })
+    }
+
+}
 
   if(address) {
     const { data: balance } = useReadContract({
@@ -39,7 +56,7 @@ export function ReadBankieContract() {
             function feedFunction(){
                 writeContract({
                     account: address,
-                    chain: localhost,
+                    chain: currentChain,
                     address: bankieAddress,
                     ...bankieContract,
                     functionName: 'feedPet',
@@ -50,7 +67,7 @@ export function ReadBankieContract() {
             function harvestFunction(){
                 writeContract({
                     account: address,
-                    chain: localhost,
+                    chain: currentChain,
                     address: bankieAddress,
                     ...bankieContract,
                     functionName: 'layGoldenEgg',
@@ -66,7 +83,18 @@ export function ReadBankieContract() {
         )
         }
     }
+    else{
+        return (
+        <div>
+            <label>It seems like you don't have a Bankie!</label>
+            <button onClick={() => adopt()}> Adopt</button>
+        </div> 
+        )
+    }
 }    
-  return <div>{}</div> 
+return (
+<div>
+</div> 
+  )
 }
 

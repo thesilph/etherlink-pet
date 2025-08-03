@@ -15,7 +15,6 @@ export function App() {
 			<QueryClientProvider client={queryClient}>
 				<ConnectKitProvider>
 					<Index></Index>
-					<UserProfile></UserProfile>
 				</ConnectKitProvider>
 			</QueryClientProvider>
 		</WagmiProvider>
