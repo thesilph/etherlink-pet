@@ -1,4 +1,5 @@
 import { XTZ_digits } from "../../utils/digits";
+import { CountTooltip, LastFedTooltip } from "../InfoPopup/InfoPopup";
 import "./bankiebox.css"
 export type CheckPetReturnType = {
   fedCount: bigint;
@@ -53,22 +54,11 @@ export function BankieBubbleCard({ pet }: { pet: CheckPetReturnType }) {
         <div style={styles.pointer} />
         <h4 style={styles.heading}>Bankie Stats</h4>
         <ul style={styles.list}>
-          <li><strong>Fed Count <InfoPopup Content={CountTooltip}/>:</strong> {pet.fedCount.toString()}</li>
+          <li><strong>Fed Count <CountTooltip/>:</strong> {pet.fedCount.toString()}</li>
           <li><strong>Fed Amount:</strong> {Number(pet.fedAmount) / (10**XTZ_digits)} XTZ</li>
-          <li><strong>Last Fed <InfoPopup Content={LastFedTooltip}/>:</strong> {new Date(Number(pet.lastFedTimestamp) * 1000).toLocaleString()}</li>
+          <li><strong>Last Fed <LastFedTooltip/>:</strong> {new Date(Number(pet.lastFedTimestamp) * 1000).toLocaleString()}</li>
         </ul>
       </div>
     </div>
   );
 }
-
-function InfoPopup(props){
-  return (
-  <div class="tooltip" style={{display: 'inline', border: '1px dotted', cursor: 'pointer'}}>i
-    <span class="tooltiptext tooltip-right">{props.Content}</span>
-  </div>
-  )
-}
-
-const CountTooltip = "When you get to 100 times, you will be able to harvest your golden egg!! (your funds) "
-const LastFedTooltip = "You can only feed every 16 hours!! (intermittent fastings)"

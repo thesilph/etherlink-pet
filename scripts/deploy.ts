@@ -12,7 +12,7 @@ async function main() {
     });
 
   const bankie = await hre.viem.getContractAt("Bankie", bankie_deploy.address)
-  console.log("Bankie deployed to:", await bankie.add());
+  console.log("Bankie deployed to:", bankie_deploy.address);
 }
 
 main().catch((error) => {

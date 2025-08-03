@@ -3,6 +3,7 @@ import { BankieVisual } from './bankievisual';
 import { BankieBubbleCard, CheckPetReturnType } from './bankiebubblecard';
 import { StylizedRatSVG } from './8bitrat';
 import { useState } from 'preact/hooks';
+import { CountTooltip, LastFedTooltip } from '../InfoPopup/InfoPopup';
 
 interface BankieBoxProps {
   id: number | bigint;
@@ -19,8 +20,11 @@ export function BankieBox({ id, pet, feedFunction, harvestFunction }: BankieBoxP
   return (
     <div>
       <div>
-        {hasFeed && <button onClick={() => feedFunction()}> Feed Pet :)</button>}
-        {hasGoldenEgg && <button onClick={() => harvestFunction()}> Harvest it's golden egg!</button>}
+        <button onClick={() => feedFunction()} disabled={!hasFeed}> Feed Pet :)</button>
+        <LastFedTooltip/> 
+        <br/>
+        <button onClick={() => harvestFunction()} disabled={!hasGoldenEgg}> Harvest it's golden egg!</button>
+        <CountTooltip/>
       </div>
       <div style={{
         display: 'flex',
