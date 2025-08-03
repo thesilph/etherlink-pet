@@ -33,7 +33,7 @@ const styles = {
     height: '0',
     borderTop: '15px solid transparent',
     borderBottom: '15px solid transparent',
-    borderLeft: '20px solid #fff',
+    borderLeft: '20px solid rgb(220, 220, 220)',
   } as React.CSSProperties,
   heading: {
     marginTop: 0,
