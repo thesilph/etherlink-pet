@@ -1,15 +1,7 @@
-# `create-preact`
+This is the bankie dApp!
 
-<h2 align="center">
-  <img height="256" width="256" src="./src/assets/preact.svg">
-</h2>
+It interacts with the contract, 
+and generates a visual representation of your Bankie!
 
-<h3 align="center">Get started using Preact and Vite!</h3>
-
-## Getting Started
-
--   `npm run dev` - Starts a dev server at http://localhost:5173/
-
--   `npm run build` - Builds for production, emitting to `dist/`
-
--   `npm run preview` - Starts a server at http://localhost:4173/ to test production build locally
+How is it generated:
+An hash is generated based on your Bankie's Id, and the hash is broken down into different colors that make up your friend :)
